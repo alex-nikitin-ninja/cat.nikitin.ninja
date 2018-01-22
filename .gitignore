@@ -1,0 +1,5 @@
+/.htaccess
+/tmp/
+/vendor/*
+/composer.lock
+/app/config/main.ini
