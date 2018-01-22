@@ -16,7 +16,7 @@ Class Controller extends Route {
 			'errorDescription' => $errorDescription,
 		);
 
-		self::renderTemplate($r, 'Error', $code);
+		self::renderTemplate('errors/unknown', [$r, 'Error', $code]);
 	}
 
 	public function redirect($newUrl, $permanent = true){
@@ -56,20 +56,20 @@ Class Controller extends Route {
 	 * @param  string  $status     status
 	 * @param  string  $statusCode status code
 	 */
-	public function renderTemplate($data = false, $status = 'OK', $statusCode = '200', $templateName = false){
+	public function renderTemplate($templateName = false, $data = false, $status = 'OK', $statusCode = '200'){
 		// ob_start("ob_gzhandler");
-		header('Access-Control-Allow-Origin: *');
-		header('Content-Type: application/json');
+		// header('Access-Control-Allow-Origin: *');
+		// header('Content-Type: application/json');
 
 		$r = array(
 			'status' => $status,
 			'code' => $statusCode,
 			'time' => time(),
 			'data' => $data,
-			'templateName' => $templateName === false ? 'Template is not defined' : $templateName
 		);
 
-		echo json_encode($r);
+		$template = new Template(self::$config->getConfIni(['templates']));
+		$template->renderTemplate($templateName, $data);
 	}
 
 }
