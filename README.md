@@ -1,4 +1,4 @@
-This is repo for https://api.nikitin.ninja/
+This is repo for https://cat.nikitin.ninja/
 ## Deployment
 Please run this command:
 ```

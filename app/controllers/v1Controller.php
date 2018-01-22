@@ -40,4 +40,18 @@ Class v1Controller extends Controller{
 		self::apiResponse($r);
 	}
 
+	// Cars
+	public function cars($params){
+		$params = trim($params);
+		if (strlen($params)>0) {
+			$params = explode('/', $params);
+		}else{
+			$params = false;
+		}
+		$recvParams = self::recvParams();
+		$carsHelper = new carsHelper();
+		$r = $carsHelper->run($params, $recvParams);
+		self::renderTemplate($r);
+	}
+
 }

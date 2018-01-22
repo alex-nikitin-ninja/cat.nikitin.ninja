@@ -16,7 +16,7 @@ Class Controller extends Route {
 			'errorDescription' => $errorDescription,
 		);
 
-		self::apiResponse($r, 'Error', $code);
+		self::renderTemplate($r, 'Error', $code);
 	}
 
 	public function redirect($newUrl, $permanent = true){
@@ -45,6 +45,28 @@ Class Controller extends Route {
 			'code' => $statusCode,
 			'time' => time(),
 			'data' => $data
+		);
+
+		echo json_encode($r);
+	}
+
+	/**
+	 * Makes html template 
+	 * @param  mixed $data         response data
+	 * @param  string  $status     status
+	 * @param  string  $statusCode status code
+	 */
+	public function renderTemplate($data = false, $status = 'OK', $statusCode = '200', $templateName = false){
+		// ob_start("ob_gzhandler");
+		header('Access-Control-Allow-Origin: *');
+		header('Content-Type: application/json');
+
+		$r = array(
+			'status' => $status,
+			'code' => $statusCode,
+			'time' => time(),
+			'data' => $data,
+			'templateName' => $templateName === false ? 'temaplte is not defined' : $templateName
 		);
 
 		echo json_encode($r);

@@ -21,7 +21,6 @@ class Route {
 		// build controller
 			$controller = $route['controller'].'Controller';
 			if(class_exists($controller)){
-				
 				self::$controller = new $controller();
 				// and call it's action
 				if(method_exists($controller, $route['action'])){
