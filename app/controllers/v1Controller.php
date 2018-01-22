@@ -40,32 +40,4 @@ Class v1Controller extends Controller{
 		self::apiResponse($r);
 	}
 
-	// Sites scraping
-	public function scrapeCars($params){
-		$params = trim($params);
-		if (strlen($params)>0) {
-			$params = explode('/', $params);
-		}else{
-			$params = false;
-		}
-		$recvParams = self::recvParams();
-		$scrapeCarsHelper = new scrapeCarsHelper();
-		$r = $scrapeCarsHelper->run($params, $recvParams);
-		self::apiResponse($r);
-	}
-
-	// Sites scraping
-	public function scrapeJobs($params){
-		$params = trim($params);
-		if (strlen($params)>0) {
-			$params = explode('/', $params);
-		}else{
-			$params = false;
-		}
-		$recvParams = self::recvParams();
-		$scrapeJobsHelper = new scrapeJobsHelper();
-		$r = $scrapeJobsHelper->run($params, $recvParams);
-		self::apiResponse($r);
-	}
-
 }
