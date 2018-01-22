@@ -66,7 +66,7 @@ Class Controller extends Route {
 			'code' => $statusCode,
 			'time' => time(),
 			'data' => $data,
-			'templateName' => $templateName === false ? 'temaplte is not defined' : $templateName
+			'templateName' => $templateName === false ? 'Template is not defined' : $templateName
 		);
 
 		echo json_encode($r);
